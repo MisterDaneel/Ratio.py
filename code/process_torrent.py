@@ -14,11 +14,11 @@ from struct import unpack
 
 logging.basicConfig(level=logging.DEBUG)
 
-class torrent():
+class process_torrent():
 
     def __init__(self, configuration):
         self.configuration = configuration
-        torrent_file = self.configuration['torrent:']
+        torrent_file = self.configuration['torrent']
         with open(torrent_file, 'rb') as tf:
             data = tf.read()
         self.b_enc = bencoding()

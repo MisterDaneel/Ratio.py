@@ -1,4 +1,4 @@
-from code.torrent import torrent
+from code.process_torrent import process_torrent
 import argparse
 import json
 import sys
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     if not configuration:
         sys.exit()
  
-    to = torrent('test.torrent')
+    to = process_torrent(configuration)
     rep = to.tracker_start_request()
     to.tracker_process()
 
