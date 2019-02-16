@@ -16,8 +16,10 @@ logging.basicConfig(level=logging.DEBUG)
 
 class torrent():
 
-    def __init__(self, torrent_tile):
-        with open(torrent_tile, 'rb') as tf:
+    def __init__(self, configuration):
+        self.configuration = configuration
+        torrent_file = self.configuration['torrent:']
+        with open(torrent_file, 'rb') as tf:
             data = tf.read()
         self.b_enc = bencoding()
         self.metainfo = self.b_enc.bdecode(data)
