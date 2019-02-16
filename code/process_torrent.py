@@ -18,14 +18,17 @@ class process_torrent():
 
     def __init__(self, configuration):
         self.configuration = configuration
+        self.open_torrent()
+        self.torrentclient = Transmission292(self.tracker_info_hash())
+
+    def open_torrent(self):
         torrent_file = self.configuration['torrent']
         with open(torrent_file, 'rb') as tf:
             data = tf.read()
         self.b_enc = bencoding()
         self.metainfo = self.b_enc.bdecode(data)
         self.info = self.metainfo['info']
-        print(pretty_data(self.info))
-        self.torrentclient = Transmission292(self.tracker_info_hash())
+        # print(pretty_data(self.info))        
 
     def tracker_info_hash(self):
         raw_info = self.b_enc.get_dict('info')
@@ -90,14 +93,20 @@ class process_torrent():
     def tracker_process(self):
         while True:
             print('----------- Sending Command to Tracker --------')
+
+            # get upload
             min_up = self.interval-(self.interval*0.1)
             max_up = self.interval
-            uploaded = 500000*random.randint(min_up, max_up)
-            
+            randomize_upload = random.randint(min_up, max_up)
+            uploaded = int(self.configuration['upload'])*1000*randomize_upload
+
+            # get download
+            downloaded = 0
+
             tc = self.torrentclient
             headers = tc.get_headers()
             params = tc.get_query(uploaded=uploaded,
-                                  downloaded=0,
+                                  downloaded=downloaded,
                                   left=0,
                                   event='stopped')
             content = self.send_request(params, headers)
