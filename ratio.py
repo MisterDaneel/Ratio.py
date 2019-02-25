@@ -30,6 +30,5 @@ if __name__ == "__main__":
         sys.exit()
  
     to = process_torrent(configuration)
-    rep = to.tracker_start_request()
     to.tracker_process()
 

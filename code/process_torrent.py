@@ -28,7 +28,11 @@ class process_torrent():
         self.b_enc = bencoding()
         self.metainfo = self.b_enc.bdecode(data)
         self.info = self.metainfo['info']
-        # print(pretty_data(self.info))        
+        if 'length' not in self.info:
+            self.info['length'] = 0
+            for file in self.info['files']:
+                self.info['length'] += file['length']
+        print(pretty_data(self.info['files']))
 
     def tracker_info_hash(self):
         raw_info = self.b_enc.get_dict('info')
@@ -92,6 +96,8 @@ class process_torrent():
 
     def tracker_process(self):
         while True:
+            self.tracker_start_request()
+
             print('----------- Sending Command to Tracker --------')
 
             # get upload
