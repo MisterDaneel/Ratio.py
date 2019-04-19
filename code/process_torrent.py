@@ -32,7 +32,7 @@ class process_torrent():
             self.info['length'] = 0
             for file in self.info['files']:
                 self.info['length'] += file['length']
-        print(pretty_data(self.info['files']))
+            print(pretty_data(self.info['files']))
 
     def tracker_info_hash(self):
         raw_info = self.b_enc.get_dict('info')
