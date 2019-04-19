@@ -59,7 +59,6 @@ class process_torrent():
         headers = tc.get_headers()
         params = tc.get_query(uploaded=0,
                               downloaded=0,
-                              left=self.info['length'],
                               event='started')
 
         print('----------- First Command to Tracker --------')
@@ -113,7 +112,6 @@ class process_torrent():
             headers = tc.get_headers()
             params = tc.get_query(uploaded=uploaded,
                                   downloaded=downloaded,
-                                  left=0,
                                   event='stopped')
             content = self.send_request(params, headers)
             self.tracker_response_parser(content)

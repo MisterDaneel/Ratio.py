@@ -28,7 +28,7 @@ class Transmission292():
         headers['Accept-Encoding'] = 'Accept-Encoding: gzip;q=1.0,  deflate, identity'
         return headers
 
-    def get_query(self, uploaded, downloaded, left, event=None):
+    def get_query(self, uploaded, downloaded, left=0, event=None):
         # The total amount uploaded (since the client sent the 'started' event)
         self.parameters["uploaded"] = uploaded
         # The total amount downloaded (since the client sent the 'started' event)
