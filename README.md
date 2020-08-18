@@ -17,6 +17,7 @@ foo@bar:~/ratio.py$ python ratio.py -c configuration.json
 ```js
 {
    "torrent": "<Torrent file path>",
-   "upload": "<Upload speed (kB/s)>"
+   "upload": "<Upload speed (kB/s)>",
+   "client: "<transmission/qbittorrent>""
 }
 ```
