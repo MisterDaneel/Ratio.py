@@ -1,0 +1,21 @@
+.\" Process this file with
+.\" groff -man -Tascii ratio.py.1
+.\"
+.TH Ratio.py 1 "AUGUST 2020" Linux "General Commands Manual"
+.SH NAME
+raio.py - Send fake infos to the torrent trackers
+.SH SYNOPSIS
+ratio.py -c [CONFIG_FILE]
+.SH DESCRIPTION
+Ratio.py is a small command line program in Python3. It fakes upload stats of a torrent. Currently the supported emulators are : Transmission and qBittorent
+.IP "-h, --help"
+show this help message and exit
+.IP "-c --config"
+path to the configuration file
+.IP "-t, --torrent"
+path to the torrent file
+.IP "-u, --upload"
+upload rate in kb/s
+.IP "-C, --client"
+client (transmission/qbittorrent)
+.I 
