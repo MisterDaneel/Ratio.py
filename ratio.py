@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from code.process_torrent import process_torrent
 import argparse
 import json
