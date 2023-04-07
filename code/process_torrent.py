@@ -1,5 +1,5 @@
 from code.decoding_bencoded import bencoding
-from code.torrentclientfactory import Transmission292
+from code.torrentclientfactory import Transmission300
 from code.pretty import pretty_data, pretty_GET
 
 from hashlib import sha1
@@ -19,7 +19,7 @@ class process_torrent():
     def __init__(self, configuration):
         self.configuration = configuration
         self.open_torrent()
-        self.torrentclient = Transmission292(self.tracker_info_hash())
+        self.torrentclient = Transmission300(self.tracker_info_hash())
 
     def open_torrent(self):
         torrent_file = self.configuration['torrent']
