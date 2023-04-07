@@ -1,5 +1,5 @@
 from code.decoding_bencoded import bencoding
-from code.torrentclientfactory import Transmission292
+from code.torrentclientfactory import Transmission300
 from code.pretty import pretty_data, pretty_GET
 
 from hashlib import sha1
@@ -19,7 +19,7 @@ class process_torrent():
     def __init__(self, configuration):
         self.configuration = configuration
         self.open_torrent()
-        self.torrentclient = Transmission292(self.tracker_info_hash())
+        self.torrentclient = Transmission300(self.tracker_info_hash())
 
     def open_torrent(self):
         torrent_file = self.configuration['torrent']
@@ -84,10 +84,12 @@ class process_torrent():
         self.interval = response['interval']
 
     def wait(self):
+        random_badtime = random.randint(10,15)*60   # interval to send request betwen 10min and 15min
+        self.interval = random_badtime
         pbar = tqdm(total=self.interval)
         print('sleep: {}'.format(self.interval))
         t = 0
-        while t < self.interval:
+        while t < (self.interval):
             t += 1
             pbar.update(1)
             sleep(1)
