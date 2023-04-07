@@ -84,10 +84,12 @@ class process_torrent():
         self.interval = response['interval']
 
     def wait(self):
+        random_badtime = random.randint(10,15)*60   # interval to send request betwen 10min and 15min
+        self.interval = random_badtime
         pbar = tqdm(total=self.interval)
         print('sleep: {}'.format(self.interval))
         t = 0
-        while t < self.interval:
+        while t < (self.interval):
             t += 1
             pbar.update(1)
             sleep(1)
